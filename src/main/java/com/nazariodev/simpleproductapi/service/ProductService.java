@@ -14,12 +14,19 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    // Saves Product
     public Product save(Product product) {
         return productRepository.save(product);
     }
 
+    // Finds Product
     public Product findById(Long id) {
         return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+    }
+
+    public void deleteProduct(Long id) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+        productRepository.delete(product);
     }
 }
 

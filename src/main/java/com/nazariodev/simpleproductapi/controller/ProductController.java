@@ -2,6 +2,7 @@ package com.nazariodev.simpleproductapi.controller;
 
 import com.nazariodev.simpleproductapi.entity.Product;
 import com.nazariodev.simpleproductapi.service.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,5 +25,11 @@ public class ProductController {
     @GetMapping("/{id}")
     public Product findById(@PathVariable Long id) {
         return productService.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Product> delete(@PathVariable Long id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
     }
 }
