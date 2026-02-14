@@ -3,8 +3,9 @@ package com.nazariodev.simpleproductapi.controller;
 import com.nazariodev.simpleproductapi.entity.Product;
 import com.nazariodev.simpleproductapi.service.ProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -20,6 +21,16 @@ public class ProductController {
     @PostMapping
     public Product save(@RequestBody Product product) {
         return productService.save(product);
+    }
+
+    @PutMapping("/{id}")
+    public Product update(@PathVariable Long id, @RequestBody Product updated) {
+        return productService.save(updated);
+    }
+
+    @GetMapping
+    public List<Product> findAll() {
+        return productService.findAll();
     }
 
     @GetMapping("/{id}")
